@@ -1,0 +1,22 @@
+{
+  "name": "moviesapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neculautudor/moviesapi.git"
+  },
+  "author": "Neculau Tudor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neculautudor/moviesapi/issues"
+  },
+  "homepage": "https://github.com/neculautudor/moviesapi#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
