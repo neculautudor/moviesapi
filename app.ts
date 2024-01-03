@@ -1,14 +1,12 @@
 import express from "express";
-import {
-  addMovie,
-  deleteMovie,
-  getMovie,
-  updateMovie,
-} from "./src/controllers/common";
 // import { createDatabase } from "./db/mymovies";
 import dotenv from "dotenv";
 import { connectToDb } from "./src/configs/db";
 import ErrorHandler from "./src/middlewares/ErrorHandler";
+import { postMovieRoute } from "./src/routes/postMovieRoute";
+import { deleteMovieRoute } from "./src/routes/deleteMovieRoute";
+import { getMovieRoute } from "./src/routes/getMovieRoute";
+import { updateMovieRoute } from "./src/routes/updateMovieRoute";
 dotenv.config();
 
 //createDatabase()
@@ -17,21 +15,18 @@ export const pool = connectToDb();
 
 const app: any = express();
 
+//middlewares
 app.use(express.json());
 
-app.get("/status", (req, res) => {
-  console.log(req.query.data);
-  const status = {
-    Status: "Running",
-  };
-  res.json(status);
-});
+//routes
+app.post("/movies", postMovieRoute);
+app.delete("/movies/:id", deleteMovieRoute);
+app.get("/movies/:id", getMovieRoute);
+app.put("/movies/:id", updateMovieRoute);
 
-app.post("/movies", addMovie);
-app.delete("/movies/:id", deleteMovie);
-app.get("/movies/:id", getMovie);
-app.put("/movies/:id", updateMovie);
+//errorHandler
 app.use(ErrorHandler);
+
 app.listen(process.env.PORT, () => {
   console.log(`MovieAPI now listening to ${process.env.PORT}`);
 });

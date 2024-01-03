@@ -1,6 +1,9 @@
-export type DefaultError = {
-  error: string;
-  message: string;
-  status: number;
-  timestamp: Date;
-};
+class CustomError extends Error {
+  statusCode: number;
+
+  constructor(message: string, statusCode?: number) {
+    super(message);
+    this.name = "CustomError";
+    this.statusCode = statusCode ?? 500;
+  }
+}
