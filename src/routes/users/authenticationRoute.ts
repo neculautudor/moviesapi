@@ -26,7 +26,7 @@ export const authenticationRoute = async (req, res, next) => {
       next(new CustomError("Password is incorrect", 400));
       return;
     }
-    const jwt = await generateToken(loginData.username);
+    const jwt = await generateToken(userData.id);
     res.status(200).json({ token: jwt, userId: userData.id });
     return;
     // if (!userExists) {

@@ -1,5 +1,4 @@
 import express from "express";
-// import { createDatabase } from "./db/mymovies";
 import dotenv from "dotenv";
 import { connectToDb } from "./src/configs/db";
 import ErrorHandler from "./src/middlewares/ErrorHandler";
@@ -10,10 +9,14 @@ import { updateMovieRoute } from "./src/routes/updateMovieRoute";
 import { createAccountRoute } from "./src/routes/users/createAccountRoute";
 import { authenticationRoute } from "./src/routes/users/authenticationRoute";
 import { checkJWT } from "./src/middlewares/checkJWT";
+import { addToFavoritesRoute } from "./src/routes/users/addToFavoritesRoute";
+import { removeFromFavoritesRoute } from "./src/routes/users/removeFromFavoritesRoute";
+// import { createDatabase } from "./src/configs/mymovies";
 dotenv.config();
-//createDatabase()
 
 export const pool = connectToDb();
+
+// createDatabase();
 
 const app: any = express();
 
@@ -27,8 +30,11 @@ app.get("/movies/:id", checkJWT, getMovieRoute);
 app.put("/movies/:id", checkJWT, updateMovieRoute);
 
 //userRoutes
-app.post("/signup", createAccountRoute);
-app.post("/login", authenticationRoute);
+app.post("/user/signup", createAccountRoute);
+app.post("/user/login", authenticationRoute);
+app.post("/user/add-favorite", checkJWT, addToFavoritesRoute);
+app.delete("/user/remove-from-favorite", checkJWT, removeFromFavoritesRoute);
+
 //errorHandler
 app.use(ErrorHandler);
 

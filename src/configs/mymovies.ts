@@ -74,6 +74,13 @@ CREATE TABLE IF NOT EXISTS users (
     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 `;
+const createTableUserFavorites = `
+    CREATE TABLE IF NOT EXISTS users_movies (
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        movie_id INTEGER REFERENCES movies(id) ON DELETE CASCADE,
+        UNIQUE (user_id, movie_id)
+    )
+`;
 export const createDatabase = async () => {
   try {
     await pool.query(createGenderType);
@@ -84,6 +91,7 @@ export const createDatabase = async () => {
     await pool.query(createTableMovieActors);
     await pool.query(createTableMovieDirectors);
     await pool.query(createTableUsers);
+    await pool.query(createTableUserFavorites);
   } catch (error) {
     throw error;
   }

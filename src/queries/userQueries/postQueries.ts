@@ -21,3 +21,14 @@ export const addUserQuery = async ({
     throw error;
   }
 };
+
+export const addUserMovieQuery = async (userId: number, movieId: number) => {
+  try {
+    await pool.query(
+      "INSERT INTO users_movies (user_id, movie_id) VALUES ($1, $2)",
+      [userId, movieId]
+    );
+  } catch (error) {
+    throw error;
+  }
+};
