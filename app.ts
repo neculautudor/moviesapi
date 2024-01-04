@@ -11,6 +11,7 @@ import { authenticationRoute } from "./src/routes/users/authenticationRoute";
 import { checkJWT } from "./src/middlewares/checkJWT";
 import { addToFavoritesRoute } from "./src/routes/users/addToFavoritesRoute";
 import { removeFromFavoritesRoute } from "./src/routes/users/removeFromFavoritesRoute";
+import { getUserFavoritesRoute } from "./src/routes/users/getUserFavoritesRoute";
 // import { createDatabase } from "./src/configs/mymovies";
 dotenv.config();
 
@@ -34,7 +35,7 @@ app.post("/user/signup", createAccountRoute);
 app.post("/user/login", authenticationRoute);
 app.post("/user/add-favorite", checkJWT, addToFavoritesRoute);
 app.delete("/user/remove-from-favorite", checkJWT, removeFromFavoritesRoute);
-
+app.get("/user/favorites/:id", checkJWT, getUserFavoritesRoute);
 //errorHandler
 app.use(ErrorHandler);
 

@@ -10,3 +10,15 @@ export const getMovieQuery = async (movieId: number) => {
     throw error;
   }
 };
+
+export const getUserFavoritesQuery = async (userId: number) => {
+  try {
+    const userFavoriteMovies = await pool.query(
+      "SELECT m.* FROM users_movies um JOIN movies m ON um.movie_id = m.id WHERE um.user_id = $1",
+      [userId]
+    );
+    return userFavoriteMovies?.rows;
+  } catch (error) {
+    throw error;
+  }
+};
