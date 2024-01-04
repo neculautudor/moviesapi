@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash VARCHAR(255) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_private BOOLEAN NOT NULL DEFAULT FALSE
 )
 `;
 const createTableUserFavorites = `

@@ -8,13 +8,14 @@ export const addUserQuery = async ({
   last_name,
   password,
   username,
+  is_private,
 }: UserType) => {
   const password_hash = await hashPassword(password);
   try {
     const result = await pool.query(
-      `INSERT INTO users (username, email, password_hash, first_name, last_name) 
-        VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-      [username, email, password_hash, first_name, last_name]
+      `INSERT INTO users (username, email, password_hash, first_name, last_name, is_private) 
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+      [username, email, password_hash, first_name, last_name, is_private]
     );
     return result.rows[0].id;
   } catch (error) {

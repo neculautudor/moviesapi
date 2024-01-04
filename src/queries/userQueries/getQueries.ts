@@ -6,3 +6,16 @@ export const getUserData = async (username: string) => {
   );
   return userData.rows[0];
 };
+
+export const getIsUserPrivate = async (userId: number) => {
+  try {
+    const isPrivate = await pool.query(
+      "SELECT is_private FROM users WHERE id = $1",
+      [userId]
+    );
+    console.log(userId, isPrivate);
+    return isPrivate?.rows?.[0]?.is_private;
+  } catch (error) {
+    throw error;
+  }
+};

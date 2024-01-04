@@ -52,7 +52,9 @@ export const isUserType = (user: any): user is UserType =>
   user.hasOwnProperty("first_name") &&
   typeof user.first_name === "string" &&
   user.hasOwnProperty("last_name") &&
-  typeof user.last_name === "string";
+  typeof user.last_name === "string" &&
+  user.hasOwnProperty("is_private") &&
+  typeof user.is_private === "boolean";
 
 export const isUserLogin = (credentials: any): credentials is CredentialsType =>
   typeof credentials === "object" &&
