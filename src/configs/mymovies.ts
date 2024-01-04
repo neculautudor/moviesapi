@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS movie_directors (
 
 const createTableUsers = `
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER NOT NULL,
-    username VARCHAR(50),
-    email VARCHAR(255) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),

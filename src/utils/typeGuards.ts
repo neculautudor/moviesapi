@@ -1,5 +1,5 @@
-import { MovieType, UploadMovieType } from "./types";
-
+import { CredentialsType, MovieType, UploadMovieType, UserType } from "./types";
+import emailValidator from "email-validator";
 export const isUploadMovieType = (movie: any): movie is UploadMovieType => {
   const date = new Date(movie?.release_date);
   return (
@@ -38,3 +38,26 @@ export const isMovieType = (movie: any): movie is MovieType =>
     movie.hasOwnProperty("duration_minutes") &&
     typeof movie.duration_minutes !== "number"
   );
+
+export const isUserType = (user: any): user is UserType =>
+  typeof user === "object" &&
+  user !== null &&
+  user.hasOwnProperty("username") &&
+  typeof user.username === "string" &&
+  user.hasOwnProperty("email") &&
+  typeof user.email === "string" &&
+  emailValidator.validate(user.email) &&
+  user.hasOwnProperty("password") &&
+  typeof user.password === "string" &&
+  user.hasOwnProperty("first_name") &&
+  typeof user.first_name === "string" &&
+  user.hasOwnProperty("last_name") &&
+  typeof user.last_name === "string";
+
+export const isUserLogin = (credentials: any): credentials is CredentialsType =>
+  typeof credentials === "object" &&
+  credentials !== null &&
+  credentials.hasOwnProperty("username") &&
+  typeof credentials.username === "string" &&
+  credentials.hasOwnProperty("password") &&
+  typeof credentials.password === "string";

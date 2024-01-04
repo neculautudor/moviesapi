@@ -1,4 +1,4 @@
-import { pool } from "../../app";
+import { pool } from "../../../app";
 
 export const getMovieQuery = async (movieId: number) => {
   try {

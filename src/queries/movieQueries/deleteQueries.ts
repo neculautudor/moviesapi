@@ -1,4 +1,4 @@
-import { pool } from "../../app";
+import { pool } from "../../../app";
 
 export const deleteMovieQuery = async (movieId: number) => {
   try {

@@ -1,4 +1,5 @@
-import { deleteMovieQuery } from "../queries/deleteQueries";
+import { CustomError } from "../errors/errorTypes";
+import { deleteMovieQuery } from "../queries/movieQueries/deleteQueries";
 
 export const deleteMovieRoute = async (req, res, next) => {
   const movieId = req.params?.id;

@@ -1,5 +1,5 @@
-import { pool } from "../../app";
-import { UpdateMovieType } from "../configs/types";
+import { pool } from "../../../app";
+import { UpdateMovieType } from "../../utils/types";
 
 export const updateMovieQuery = async (
   movieId: number,

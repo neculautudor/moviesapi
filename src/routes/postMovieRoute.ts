@@ -1,9 +1,10 @@
-import { isUploadMovieType } from "../configs/typeGuards";
+import { isUploadMovieType } from "../utils/typeGuards";
 import {
   addMovieActorsQuery,
   addMovieDirectorsQuery,
   addMovieQuery,
-} from "../queries/postQueries";
+} from "../queries/movieQueries/postQueries";
+import { CustomError } from "../errors/errorTypes";
 
 export const postMovieRoute = async (req, res, next) => {
   if (!isUploadMovieType(req.body)) {

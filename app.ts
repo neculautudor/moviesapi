@@ -7,8 +7,10 @@ import { postMovieRoute } from "./src/routes/postMovieRoute";
 import { deleteMovieRoute } from "./src/routes/deleteMovieRoute";
 import { getMovieRoute } from "./src/routes/getMovieRoute";
 import { updateMovieRoute } from "./src/routes/updateMovieRoute";
+import { createAccountRoute } from "./src/routes/users/createAccountRoute";
+import { authenticationRoute } from "./src/routes/users/authenticationRoute";
+import { checkJWT } from "./src/middlewares/checkJWT";
 dotenv.config();
-
 //createDatabase()
 
 export const pool = connectToDb();
@@ -18,12 +20,15 @@ const app: any = express();
 //middlewares
 app.use(express.json());
 
-//routes
-app.post("/movies", postMovieRoute);
-app.delete("/movies/:id", deleteMovieRoute);
-app.get("/movies/:id", getMovieRoute);
-app.put("/movies/:id", updateMovieRoute);
+//movieRoutes
+app.post("/movies", checkJWT, postMovieRoute);
+app.delete("/movies/:id", checkJWT, deleteMovieRoute);
+app.get("/movies/:id", checkJWT, getMovieRoute);
+app.put("/movies/:id", checkJWT, updateMovieRoute);
 
+//userRoutes
+app.post("/signup", createAccountRoute);
+app.post("/login", authenticationRoute);
 //errorHandler
 app.use(ErrorHandler);
 

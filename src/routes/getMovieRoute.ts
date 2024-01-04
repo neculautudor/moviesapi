@@ -1,4 +1,5 @@
-import { getMovieQuery } from "../queries/getQueries";
+import { CustomError } from "../errors/errorTypes";
+import { getMovieQuery } from "../queries/movieQueries/getQueries";
 
 export const getMovieRoute = async (req, res, next) => {
   const movieId = req.params?.id;

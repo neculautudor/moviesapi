@@ -1,5 +1,5 @@
-import { isMovieType } from "../configs/typeGuards";
-import { updateMovieQuery } from "../queries/putQueries";
+import { isMovieType } from "../utils/typeGuards";
+import { updateMovieQuery } from "../queries/movieQueries/putQueries";
 
 export const updateMovieRoute = async (req, res) => {
   const movieId = req.params?.id;

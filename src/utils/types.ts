@@ -26,3 +26,16 @@ export type MovieDirectorsType = {
   movie_id: number;
   director_ids: number[];
 };
+
+export type UserType = {
+  username: string;
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+};
+
+export type CredentialsType = {
+  username: string;
+  password: string;
+};

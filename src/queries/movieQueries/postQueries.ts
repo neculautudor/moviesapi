@@ -1,9 +1,9 @@
-import { pool } from "../../app";
+import { pool } from "../../../app";
 import {
   MovieActorsType,
   MovieDirectorsType,
   MovieType,
-} from "../configs/types";
+} from "../../utils/types";
 
 export const addMovieQuery = async ({
   name,
