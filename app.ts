@@ -17,8 +17,6 @@ dotenv.config();
 
 export const pool = connectToDb();
 
-// createDatabase();
-
 const app: any = express();
 
 //middlewares
